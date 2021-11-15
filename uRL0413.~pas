@@ -1,0 +1,163 @@
+unit uRL0413;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ExtCtrls, DBCtrls, Mask, JvExMask, JvToolEdit,
+  DB, Grids, DBGrids, ppBands, ppCtrls, ppPrnabl, ppClass, ppVar, ppCache,
+  ppComm, ppRelatv, ppProd, ppReport, TeEngine, Series, TeeProcs, Chart,
+  DbChart, ppChrt, ppChrtDP, ppDB, ppDBPipe;
+
+type
+  TfrmRL0413 = class(TForm)
+    Panel1: TPanel;
+    btnImprimir: TBitBtn;
+    btnFechar: TBitBtn;
+    Label2: TLabel;
+    Label3: TLabel;
+    rdgValores: TRadioGroup;
+    edtDataInicial: TJvDateEdit;
+    edtDataFinal: TJvDateEdit;
+    rdgTipo: TRadioGroup;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnFecharClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRL0413: TfrmRL0413;
+
+implementation
+
+uses udmRL0413, uGlobal, uRL0413_1;
+
+{$R *.dfm}
+
+procedure TfrmRL0413.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+   Action := caFree;
+end;
+
+procedure TfrmRL0413.btnFecharClick(Sender: TObject);
+begin
+   Close;
+end;
+
+procedure TfrmRL0413.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+      Perform(WM_NEXTDLGCTL, 0, 0);
+end;
+
+procedure TfrmRL0413.FormCreate(Sender: TObject);
+begin
+   dmRL0413 := TdmRL0413.Create(Self);
+end;
+
+procedure TfrmRL0413.FormShow(Sender: TObject);
+begin
+   dmRL0413.qryVendedor.ParamByName('EMPRESA').AsString := CodigoEmpresa1;
+   dmRL0413.cdsVendedor.Open;
+
+   edtDataInicial.Date := DataSystem1;
+   edtDataFinal.Date   := DataSystem1;
+end;
+
+procedure TfrmRL0413.btnImprimirClick(Sender: TObject);
+var Vendedor1: Integer;
+    Vendedor2: String;
+    Valor1: Double;
+begin
+// inicio validacoes
+
+   if edtDataFinal.Date < edtDataInicial.Date then
+   begin
+      Application.MessageBox('Período inválido','Atenção',MB_ICONWARNING);
+      edtDataFinal.SetFocus;
+   end;
+
+// ^ fim validacoes ^
+
+
+   // apura dados
+
+   dmRL0413.qryVendas.Close;
+   dmRL0413.qryVendas.ParamByName('EMPRESA').AsString := CodigoEmpresa1;
+   dmRL0413.qryVendas.ParamByName('DATA_INI').AsDate  := edtDataInicial.Date;
+   dmRL0413.qryVendas.ParamByName('DATA_FIM').AsDate  := edtDataFinal.Date;
+   dmRL0413.qryVendas.Open;
+   dmRL0413.qryVendas.First;
+
+   Vendedor1 := dmRL0413.qryVendas.FieldByName('VENDEDOR_VENDA').AsInteger;
+   Vendedor2 := dmRL0413.qryVendas.FieldByName('NOME_VENDEDOR').AsString;
+   Valor1    := 0;
+
+   dmRL0413.cdsVendas.EmptyDataSet;
+
+   while not dmRL0413.qryVendas.Eof do
+   begin
+      Valor1 := Valor1 + dmRL0413.qryVendas.FieldByName('VALORNOTA_VENDA').AsFloat;
+
+      dmRL0413.qryVendas.Next;
+
+      if dmRL0413.qryVendas.FieldByName('VENDEDOR_VENDA').AsInteger <> Vendedor1 then
+      begin
+         dmRL0413.cdsVendas.Insert;
+         dmRL0413.cdsVendasVendedor.Value := Vendedor2;
+         dmRL0413.cdsVendasValor.Value    := Valor1;
+         dmRL0413.cdsVendas.Post;
+
+         Vendedor1 := dmRL0413.qryVendas.FieldByName('VENDEDOR_VENDA').AsInteger;
+         Vendedor2 := dmRL0413.qryVendas.FieldByName('NOME_VENDEDOR').AsString;
+         Valor1    := 0;
+      end;
+   end;    // while
+
+   if dmRL0413.cdsVendas.RecordCount = 0 then
+   begin
+      Application.MessageBox('Dados não localizados','Atenção',MB_ICONEXCLAMATION);
+      Exit;
+   end;
+
+   frmRL0413_1 := TfrmRL0413_1.Create(Self);
+
+   // tipo do gráfico
+   if rdgTipo.ItemIndex = 0 then
+   begin
+      frmRL0413_1.DBChart1.Series[0].Active := True;
+      frmRL0413_1.DBChart1.Series[1].Active := False;
+   end
+   else if rdgTipo.ItemIndex = 1 then
+   begin
+      frmRL0413_1.DBChart1.Series[0].Active := False;
+      frmRL0413_1.DBChart1.Series[1].Active := True;
+   end;
+
+   // tipo de valores
+   if rdgValores.ItemIndex = 0 then
+   begin
+      frmRL0413_1.DBChart1.Series[0].Marks.Style  := smsValue;
+      frmRL0413_1.DBChart1.Series[1].Marks.Style  := smsValue;
+      frmRL0413_1.DBChart1.Series[1].ShowInLegend := True;
+   end
+   else if rdgValores.ItemIndex = 1 then
+   begin
+      frmRL0413_1.DBChart1.Series[0].Marks.Style  := smsPercent;
+      frmRL0413_1.DBChart1.Series[1].Marks.Style  := smsPercent;
+      frmRL0413_1.DBChart1.Series[1].ShowInLegend := False;
+   end;
+
+   frmRL0413_1.ShowModal;
+   frmRL0413_1.Release;
+   frmRL0413_1 := nil; 
+end;
+
+end.

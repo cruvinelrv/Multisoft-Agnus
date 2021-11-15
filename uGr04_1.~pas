@@ -1,0 +1,109 @@
+unit uGr04_1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, ComCtrls, ExtCtrls, DB, Mask, JvExMask,
+  JvToolEdit, JvBaseEdits, JvDBControls, DBCtrls;
+
+type
+  TfrmGr04_1 = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel9: TPanel;
+    btnGravar: TBitBtn;
+    BitBtn2: TBitBtn;
+    DataSource1: TDataSource;
+    DBText1: TDBText;
+    DBText2: TDBText;
+    JvDBCalcEdit1: TJvDBCalcEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    DBText3: TDBText;
+    Label5: TLabel;
+    DBText4: TDBText;
+    Label6: TLabel;
+    DBText5: TDBText;
+    DBText7: TDBText;
+    Label8: TLabel;
+    Label9: TLabel;
+    JvDBCalcEdit2: TJvDBCalcEdit;
+    DBText8: TDBText;
+    Label10: TLabel;
+    Label11: TLabel;
+    JvDBCalcEdit3: TJvDBCalcEdit;
+    DBText9: TDBText;
+    Label12: TLabel;
+    Label13: TLabel;
+    DBEdit1: TDBEdit;
+    Panel5: TPanel;
+    Label7: TLabel;
+    DBText6: TDBText;
+    DBText10: TDBText;
+    Label14: TLabel;
+    JvDBCalcEdit5: TJvDBCalcEdit;
+    Label15: TLabel;
+    Panel7: TPanel;
+    Label16: TLabel;
+    DBText11: TDBText;
+    Label17: TLabel;
+    Label18: TLabel;
+    JvDBCalcEdit4: TJvDBCalcEdit;
+    JvDBCalcEdit6: TJvDBCalcEdit;
+    Panel8: TPanel;
+    Label19: TLabel;
+    DBText12: TDBText;
+    Label20: TLabel;
+    DBEdit2: TDBEdit;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmGr04_1: TfrmGr04_1;
+
+implementation
+
+uses udmGr04;
+
+{$R *.dfm}
+
+procedure TfrmGr04_1.BitBtn2Click(Sender: TObject);
+begin
+   Close;
+end;
+
+procedure TfrmGr04_1.btnGravarClick(Sender: TObject);
+begin
+
+   dmGr04.cdsProdutos.Post;
+   dmGr04.cdsProdutos.ApplyUpdates(0);
+   Close;
+
+end;
+
+procedure TfrmGr04_1.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+   begin
+      Key := #0;
+      Perform(WM_NEXTDLGCTL, 0, 0);
+   end
+   else
+   begin
+      if Key = #27 then
+         Close;
+   end;
+end;
+
+end.

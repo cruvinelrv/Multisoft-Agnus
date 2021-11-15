@@ -1,0 +1,1341 @@
+object dmRL0333: TdmRL0333
+  OldCreateOrder = False
+  Left = 431
+  Top = 304
+  Height = 126
+  Width = 404
+  object qryProdutos: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      '')
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 32
+    Top = 24
+  end
+  object dspProdutos: TDataSetProvider
+    DataSet = qryProdutos
+    Options = [poAllowCommandText]
+    Left = 112
+    Top = 24
+  end
+  object cdsProdutos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspProdutos'
+    Left = 192
+    Top = 24
+    object cdsProdutosCODIGO_PRODUTO: TIntegerField
+      FieldName = 'CODIGO_PRODUTO'
+      Required = True
+    end
+    object cdsProdutosCLASSE_PRODUTO: TIntegerField
+      FieldName = 'CLASSE_PRODUTO'
+    end
+    object cdsProdutosGRUPO_PRODUTO: TIntegerField
+      FieldName = 'GRUPO_PRODUTO'
+    end
+    object cdsProdutosSUBGRUPO_PRODUTO: TIntegerField
+      FieldName = 'SUBGRUPO_PRODUTO'
+    end
+    object cdsProdutosDESCRICAO_PRODUTO: TStringField
+      FieldName = 'DESCRICAO_PRODUTO'
+      FixedChar = True
+      Size = 40
+    end
+    object cdsProdutosUNIDADE_PRODUTO: TStringField
+      FieldName = 'UNIDADE_PRODUTO'
+      FixedChar = True
+      Size = 4
+    end
+    object cdsProdutosPESO_PRODUTO: TFMTBCDField
+      FieldName = 'PESO_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosSERIE_PRODUTO: TStringField
+      FieldName = 'SERIE_PRODUTO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsProdutosDESUSO_PRODUTO: TStringField
+      FieldName = 'DESUSO_PRODUTO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsProdutosGRADE_PRODUTO: TStringField
+      FieldName = 'GRADE_PRODUTO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsProdutosESTOQUE_PRODUTO: TFMTBCDField
+      FieldName = 'ESTOQUE_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosESTOQUE1_PRODUTO: TFMTBCDField
+      FieldName = 'ESTOQUE1_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosESTOQUE2_PRODUTO: TFMTBCDField
+      FieldName = 'ESTOQUE2_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosESTOQUE3_PRODUTO: TFMTBCDField
+      FieldName = 'ESTOQUE3_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosMINIMO_PRODUTO: TFMTBCDField
+      FieldName = 'MINIMO_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosMAXIMO_PRODUTO: TFMTBCDField
+      FieldName = 'MAXIMO_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosRESERVA_PRODUTO: TFMTBCDField
+      FieldName = 'RESERVA_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosPRECOUNIT_PRODUTO: TFMTBCDField
+      FieldName = 'PRECOUNIT_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosPROMOCAO_PRODUTO: TFMTBCDField
+      FieldName = 'PROMOCAO_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosPRECO_ANT_PRODUTO: TFMTBCDField
+      FieldName = 'PRECO_ANT_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosPRECO_COMPRA_PRODUTO: TFMTBCDField
+      FieldName = 'PRECO_COMPRA_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosPRECO_CUSTO_PRODUTO: TFMTBCDField
+      FieldName = 'PRECO_CUSTO_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosPRECO_LISTA_PRODUTO: TFMTBCDField
+      FieldName = 'PRECO_LISTA_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosPER_DESCON_PRODUTO: TFMTBCDField
+      FieldName = 'PER_DESCON_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosPER_ANTER_PRODUTO: TFMTBCDField
+      FieldName = 'PER_ANTER_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosDATA_CUSTO_PRODUTO: TDateField
+      FieldName = 'DATA_CUSTO_PRODUTO'
+    end
+    object cdsProdutosVLRATACADO_PRODUTO: TFMTBCDField
+      FieldName = 'VLRATACADO_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosADQUIRIDA_PRODUTO: TFMTBCDField
+      FieldName = 'ADQUIRIDA_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosADQUIRIDA1_PRODUTO: TFMTBCDField
+      FieldName = 'ADQUIRIDA1_PRODUTO'
+      Precision = 15
+      Size = 3
+    end
+    object cdsProdutosDATA_COMPRA_PRODUTO: TDateField
+      FieldName = 'DATA_COMPRA_PRODUTO'
+    end
+    object cdsProdutosDATA_COMPRA1_PRODUTO: TDateField
+      FieldName = 'DATA_COMPRA1_PRODUTO'
+    end
+    object cdsProdutosULT_VENDA_PRODUTO: TDateField
+      FieldName = 'ULT_VENDA_PRODUTO'
+    end
+    object cdsProdutosCADASTRO_PRODUTO: TDateField
+      FieldName = 'CADASTRO_PRODUTO'
+    end
+    object cdsProdutosFIM_PROMOCAO_PRODUTO: TDateField
+      FieldName = 'FIM_PROMOCAO_PRODUTO'
+    end
+    object cdsProdutosFABRICANTE_PRODUTO: TStringField
+      FieldName = 'FABRICANTE_PRODUTO'
+      Size = 15
+    end
+    object cdsProdutosBARRA_PRODUTO: TStringField
+      FieldName = 'BARRA_PRODUTO'
+      Size = 17
+    end
+    object cdsProdutosMARKUP_PRODUTO: TFMTBCDField
+      FieldName = 'MARKUP_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosREFERENCIA_PRODUTO: TStringField
+      FieldName = 'REFERENCIA_PRODUTO'
+      Size = 5
+    end
+    object cdsProdutosICMSUB_PRODUTO: TFMTBCDField
+      FieldName = 'ICMSUB_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosICMSUB_VENDA_PRODUTO: TFMTBCDField
+      FieldName = 'ICMSUB_VENDA_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosICM_ENTRADA_PRODUTO: TFMTBCDField
+      FieldName = 'ICM_ENTRADA_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosICMSAIDA_PRODUTO: TFMTBCDField
+      FieldName = 'ICMSAIDA_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosICMSAIDA_FORA_PRODUTO: TFMTBCDField
+      FieldName = 'ICMSAIDA_FORA_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosFRETE_PRODUTO: TFMTBCDField
+      FieldName = 'FRETE_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosCOMISSAO1_PRODUTO: TFMTBCDField
+      FieldName = 'COMISSAO1_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosCOMISSAO2_PRODUTO: TFMTBCDField
+      FieldName = 'COMISSAO2_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosDESCONTO_PRODUTO: TFMTBCDField
+      FieldName = 'DESCONTO_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosDESCONTOC_PRODUTO: TFMTBCDField
+      FieldName = 'DESCONTOC_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosIPI_PRODUTO: TFMTBCDField
+      FieldName = 'IPI_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosII_PRODUTO: TFMTBCDField
+      FieldName = 'II_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosOUTROS_PRODUTO: TFMTBCDField
+      FieldName = 'OUTROS_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosTMP_GARANTIA_PRODUTO: TStringField
+      FieldName = 'TMP_GARANTIA_PRODUTO'
+      Size = 10
+    end
+    object cdsProdutosMEDIA_PRODUTO: TFMTBCDField
+      FieldName = 'MEDIA_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosREDU_DENTR_PRODUTO: TFMTBCDField
+      FieldName = 'REDU_DENTR_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosREDU_FORA_PRODUTO: TFMTBCDField
+      FieldName = 'REDU_FORA_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosOBS_DENTR_PRODUTO: TIntegerField
+      FieldName = 'OBS_DENTR_PRODUTO'
+    end
+    object cdsProdutosOBS_FORA_PRODUTO: TIntegerField
+      FieldName = 'OBS_FORA_PRODUTO'
+    end
+    object cdsProdutosISS_PRODUTO: TFMTBCDField
+      FieldName = 'ISS_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosPRAT1_PRODUTO: TStringField
+      FieldName = 'PRAT1_PRODUTO'
+      Size = 8
+    end
+    object cdsProdutosPRAT2_PRODUTO: TStringField
+      FieldName = 'PRAT2_PRODUTO'
+      Size = 8
+    end
+    object cdsProdutosFABRICA_PRODUTO: TIntegerField
+      FieldName = 'FABRICA_PRODUTO'
+    end
+    object cdsProdutosDISTRIB1_PRODUTO: TIntegerField
+      FieldName = 'DISTRIB1_PRODUTO'
+    end
+    object cdsProdutosDISTRIB2_PRODUTO: TIntegerField
+      FieldName = 'DISTRIB2_PRODUTO'
+    end
+    object cdsProdutosVALIDADE_PRODUTO: TDateField
+      FieldName = 'VALIDADE_PRODUTO'
+    end
+    object cdsProdutosTRIB_DENTRO_PRODUTO: TStringField
+      FieldName = 'TRIB_DENTRO_PRODUTO'
+      Size = 3
+    end
+    object cdsProdutosTRIB_FORA_PRODUTO: TStringField
+      FieldName = 'TRIB_FORA_PRODUTO'
+      Size = 3
+    end
+    object cdsProdutosSIMILAR1_PRODUTO: TIntegerField
+      FieldName = 'SIMILAR1_PRODUTO'
+    end
+    object cdsProdutosSIMILAR2_PRODUTO: TIntegerField
+      FieldName = 'SIMILAR2_PRODUTO'
+    end
+    object cdsProdutosOBSERVACAO_PRODUTO: TMemoField
+      FieldName = 'OBSERVACAO_PRODUTO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsProdutosSEXO_PRODUTO: TStringField
+      FieldName = 'SEXO_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosFISCAL_PRODUTO: TStringField
+      FieldName = 'FISCAL_PRODUTO'
+      Size = 10
+    end
+    object cdsProdutosCONTABIL_PRODUTO: TStringField
+      FieldName = 'CONTABIL_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosC_DEFEITO_PRODUTO: TFMTBCDField
+      FieldName = 'C_DEFEITO_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosENV_GARANTIA_PRODUTO: TFMTBCDField
+      FieldName = 'ENV_GARANTIA_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosLOCAL_ESTOQUE_PRODUTO: TIntegerField
+      FieldName = 'LOCAL_ESTOQUE_PRODUTO'
+    end
+    object cdsProdutosEXPORTADO_PRODUTO: TDateField
+      FieldName = 'EXPORTADO_PRODUTO'
+    end
+    object cdsProdutosSELECAO_PRODUTO: TStringField
+      FieldName = 'SELECAO_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosMETRO_CUB_PRODUTO: TStringField
+      FieldName = 'METRO_CUB_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosRECEITUAR_PRODUTO: TStringField
+      FieldName = 'RECEITUAR_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosRED_CONTRI_PRODUTO: TStringField
+      FieldName = 'RED_CONTRI_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosALI_CONTRI_PRODUTO: TFMTBCDField
+      FieldName = 'ALI_CONTRI_PRODUTO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosTRIB_U_A_PRODUTO: TStringField
+      FieldName = 'TRIB_U_A_PRODUTO'
+      Size = 3
+    end
+    object cdsProdutosTRIB_F_A_PRODUTO: TStringField
+      FieldName = 'TRIB_F_A_PRODUTO'
+      Size = 3
+    end
+    object cdsProdutosRED_U_A_PRODUTO: TFMTBCDField
+      FieldName = 'RED_U_A_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosRED_F_A_PRODUTO: TFMTBCDField
+      FieldName = 'RED_F_A_PRODUTO'
+      Precision = 15
+      Size = 4
+    end
+    object cdsProdutosMERCOSUL_PRODUTO: TStringField
+      FieldName = 'MERCOSUL_PRODUTO'
+      Size = 12
+    end
+    object cdsProdutosCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+      Required = True
+    end
+    object cdsProdutosFOTO_PRODUTO: TStringField
+      FieldName = 'FOTO_PRODUTO'
+      Size = 1
+    end
+    object cdsProdutosQTD_FRACIONADA: TStringField
+      FieldName = 'QTD_FRACIONADA'
+      Size = 1
+    end
+    object cdsProdutosCODIGO_GRUPO: TIntegerField
+      FieldName = 'CODIGO_GRUPO'
+    end
+    object cdsProdutosDESCRICAO_GRUPO: TStringField
+      FieldName = 'DESCRICAO_GRUPO'
+      Size = 30
+    end
+    object cdsProdutosCOMISSAO_GRUPO: TFMTBCDField
+      FieldName = 'COMISSAO_GRUPO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosCOMISSAO1_GRUPO: TFMTBCDField
+      FieldName = 'COMISSAO1_GRUPO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosFATOR_VEND_GRUPO: TFMTBCDField
+      FieldName = 'FATOR_VEND_GRUPO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosCODIGO_SECAO_GRUPO: TIntegerField
+      FieldName = 'CODIGO_SECAO_GRUPO'
+    end
+    object cdsProdutosSUSPENSO_GRUPO: TStringField
+      FieldName = 'SUSPENSO_GRUPO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsProdutosTRANSFERE_GRUPO: TFMTBCDField
+      FieldName = 'TRANSFERE_GRUPO'
+      Precision = 15
+      Size = 2
+    end
+    object cdsProdutosOBSERVACAO_GRUPO: TStringField
+      FieldName = 'OBSERVACAO_GRUPO'
+    end
+    object cdsProdutosNEGATIVO_GRUPO: TStringField
+      FieldName = 'NEGATIVO_GRUPO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsProdutosCOD_EMPRESA_1: TIntegerField
+      FieldName = 'COD_EMPRESA_1'
+    end
+    object cdsProdutosCODIGO_SECAO: TIntegerField
+      FieldName = 'CODIGO_SECAO'
+    end
+    object cdsProdutosDESCRICAO_SECAO: TStringField
+      FieldName = 'DESCRICAO_SECAO'
+    end
+    object cdsProdutosCOD_EMPRESA_2: TIntegerField
+      FieldName = 'COD_EMPRESA_2'
+    end
+  end
+  object dtsProdutos: TDataSource
+    DataSet = cdsProdutos
+    Left = 264
+    Top = 24
+  end
+  object ppProdutos: TppDBPipeline
+    DataSource = dtsProdutos
+    UserName = 'Produtos'
+    Left = 336
+    Top = 24
+    object ppProdutosppField1: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'CODIGO_PRODUTO'
+      FieldName = 'CODIGO_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 0
+      Position = 0
+    end
+    object ppProdutosppField2: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'CLASSE_PRODUTO'
+      FieldName = 'CLASSE_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 1
+    end
+    object ppProdutosppField3: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'GRUPO_PRODUTO'
+      FieldName = 'GRUPO_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 2
+    end
+    object ppProdutosppField4: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'SUBGRUPO_PRODUTO'
+      FieldName = 'SUBGRUPO_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 3
+    end
+    object ppProdutosppField5: TppField
+      FieldAlias = 'DESCRICAO_PRODUTO'
+      FieldName = 'DESCRICAO_PRODUTO'
+      FieldLength = 40
+      DisplayWidth = 40
+      Position = 4
+    end
+    object ppProdutosppField6: TppField
+      FieldAlias = 'UNIDADE_PRODUTO'
+      FieldName = 'UNIDADE_PRODUTO'
+      FieldLength = 4
+      DisplayWidth = 4
+      Position = 5
+    end
+    object ppProdutosppField7: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PESO_PRODUTO'
+      FieldName = 'PESO_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 6
+    end
+    object ppProdutosppField8: TppField
+      FieldAlias = 'SERIE_PRODUTO'
+      FieldName = 'SERIE_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 7
+    end
+    object ppProdutosppField9: TppField
+      FieldAlias = 'DESUSO_PRODUTO'
+      FieldName = 'DESUSO_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 8
+    end
+    object ppProdutosppField10: TppField
+      FieldAlias = 'GRADE_PRODUTO'
+      FieldName = 'GRADE_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 9
+    end
+    object ppProdutosppField11: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ESTOQUE_PRODUTO'
+      FieldName = 'ESTOQUE_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 10
+    end
+    object ppProdutosppField12: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ESTOQUE1_PRODUTO'
+      FieldName = 'ESTOQUE1_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 11
+    end
+    object ppProdutosppField13: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ESTOQUE2_PRODUTO'
+      FieldName = 'ESTOQUE2_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 12
+    end
+    object ppProdutosppField14: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ESTOQUE3_PRODUTO'
+      FieldName = 'ESTOQUE3_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 13
+    end
+    object ppProdutosppField15: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'MINIMO_PRODUTO'
+      FieldName = 'MINIMO_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 14
+    end
+    object ppProdutosppField16: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'MAXIMO_PRODUTO'
+      FieldName = 'MAXIMO_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 15
+    end
+    object ppProdutosppField17: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'RESERVA_PRODUTO'
+      FieldName = 'RESERVA_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 16
+    end
+    object ppProdutosppField18: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PRECOUNIT_PRODUTO'
+      FieldName = 'PRECOUNIT_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 17
+    end
+    object ppProdutosppField19: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PROMOCAO_PRODUTO'
+      FieldName = 'PROMOCAO_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 18
+    end
+    object ppProdutosppField20: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PRECO_ANT_PRODUTO'
+      FieldName = 'PRECO_ANT_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 19
+    end
+    object ppProdutosppField21: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PRECO_COMPRA_PRODUTO'
+      FieldName = 'PRECO_COMPRA_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 20
+    end
+    object ppProdutosppField22: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PRECO_CUSTO_PRODUTO'
+      FieldName = 'PRECO_CUSTO_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 21
+    end
+    object ppProdutosppField23: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PRECO_LISTA_PRODUTO'
+      FieldName = 'PRECO_LISTA_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 22
+    end
+    object ppProdutosppField24: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PER_DESCON_PRODUTO'
+      FieldName = 'PER_DESCON_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 23
+    end
+    object ppProdutosppField25: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'PER_ANTER_PRODUTO'
+      FieldName = 'PER_ANTER_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 24
+    end
+    object ppProdutosppField26: TppField
+      FieldAlias = 'DATA_CUSTO_PRODUTO'
+      FieldName = 'DATA_CUSTO_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 25
+    end
+    object ppProdutosppField27: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'VLRATACADO_PRODUTO'
+      FieldName = 'VLRATACADO_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 26
+    end
+    object ppProdutosppField28: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ADQUIRIDA_PRODUTO'
+      FieldName = 'ADQUIRIDA_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 27
+    end
+    object ppProdutosppField29: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ADQUIRIDA1_PRODUTO'
+      FieldName = 'ADQUIRIDA1_PRODUTO'
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 28
+    end
+    object ppProdutosppField30: TppField
+      FieldAlias = 'DATA_COMPRA_PRODUTO'
+      FieldName = 'DATA_COMPRA_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 29
+    end
+    object ppProdutosppField31: TppField
+      FieldAlias = 'DATA_COMPRA1_PRODUTO'
+      FieldName = 'DATA_COMPRA1_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 30
+    end
+    object ppProdutosppField32: TppField
+      FieldAlias = 'ULT_VENDA_PRODUTO'
+      FieldName = 'ULT_VENDA_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 31
+    end
+    object ppProdutosppField33: TppField
+      FieldAlias = 'CADASTRO_PRODUTO'
+      FieldName = 'CADASTRO_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 32
+    end
+    object ppProdutosppField34: TppField
+      FieldAlias = 'FIM_PROMOCAO_PRODUTO'
+      FieldName = 'FIM_PROMOCAO_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 33
+    end
+    object ppProdutosppField35: TppField
+      FieldAlias = 'FABRICANTE_PRODUTO'
+      FieldName = 'FABRICANTE_PRODUTO'
+      FieldLength = 15
+      DisplayWidth = 15
+      Position = 34
+    end
+    object ppProdutosppField36: TppField
+      FieldAlias = 'BARRA_PRODUTO'
+      FieldName = 'BARRA_PRODUTO'
+      FieldLength = 17
+      DisplayWidth = 17
+      Position = 35
+    end
+    object ppProdutosppField37: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'MARKUP_PRODUTO'
+      FieldName = 'MARKUP_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 36
+    end
+    object ppProdutosppField38: TppField
+      FieldAlias = 'REFERENCIA_PRODUTO'
+      FieldName = 'REFERENCIA_PRODUTO'
+      FieldLength = 5
+      DisplayWidth = 5
+      Position = 37
+    end
+    object ppProdutosppField39: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ICMSUB_PRODUTO'
+      FieldName = 'ICMSUB_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 38
+    end
+    object ppProdutosppField40: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ICMSUB_VENDA_PRODUTO'
+      FieldName = 'ICMSUB_VENDA_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 39
+    end
+    object ppProdutosppField41: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ICM_ENTRADA_PRODUTO'
+      FieldName = 'ICM_ENTRADA_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 40
+    end
+    object ppProdutosppField42: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ICMSAIDA_PRODUTO'
+      FieldName = 'ICMSAIDA_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 41
+    end
+    object ppProdutosppField43: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ICMSAIDA_FORA_PRODUTO'
+      FieldName = 'ICMSAIDA_FORA_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 42
+    end
+    object ppProdutosppField44: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FRETE_PRODUTO'
+      FieldName = 'FRETE_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 43
+    end
+    object ppProdutosppField45: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COMISSAO1_PRODUTO'
+      FieldName = 'COMISSAO1_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 44
+    end
+    object ppProdutosppField46: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COMISSAO2_PRODUTO'
+      FieldName = 'COMISSAO2_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 45
+    end
+    object ppProdutosppField47: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'DESCONTO_PRODUTO'
+      FieldName = 'DESCONTO_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 46
+    end
+    object ppProdutosppField48: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'DESCONTOC_PRODUTO'
+      FieldName = 'DESCONTOC_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 47
+    end
+    object ppProdutosppField49: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'IPI_PRODUTO'
+      FieldName = 'IPI_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 48
+    end
+    object ppProdutosppField50: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'II_PRODUTO'
+      FieldName = 'II_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 49
+    end
+    object ppProdutosppField51: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'OUTROS_PRODUTO'
+      FieldName = 'OUTROS_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 50
+    end
+    object ppProdutosppField52: TppField
+      FieldAlias = 'TMP_GARANTIA_PRODUTO'
+      FieldName = 'TMP_GARANTIA_PRODUTO'
+      FieldLength = 10
+      DisplayWidth = 10
+      Position = 51
+    end
+    object ppProdutosppField53: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'MEDIA_PRODUTO'
+      FieldName = 'MEDIA_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 52
+    end
+    object ppProdutosppField54: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'REDU_DENTR_PRODUTO'
+      FieldName = 'REDU_DENTR_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 53
+    end
+    object ppProdutosppField55: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'REDU_FORA_PRODUTO'
+      FieldName = 'REDU_FORA_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 54
+    end
+    object ppProdutosppField56: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'OBS_DENTR_PRODUTO'
+      FieldName = 'OBS_DENTR_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 55
+    end
+    object ppProdutosppField57: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'OBS_FORA_PRODUTO'
+      FieldName = 'OBS_FORA_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 56
+    end
+    object ppProdutosppField58: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ISS_PRODUTO'
+      FieldName = 'ISS_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 57
+    end
+    object ppProdutosppField59: TppField
+      FieldAlias = 'PRAT1_PRODUTO'
+      FieldName = 'PRAT1_PRODUTO'
+      FieldLength = 8
+      DisplayWidth = 8
+      Position = 58
+    end
+    object ppProdutosppField60: TppField
+      FieldAlias = 'PRAT2_PRODUTO'
+      FieldName = 'PRAT2_PRODUTO'
+      FieldLength = 8
+      DisplayWidth = 8
+      Position = 59
+    end
+    object ppProdutosppField61: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FABRICA_PRODUTO'
+      FieldName = 'FABRICA_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 60
+    end
+    object ppProdutosppField62: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'DISTRIB1_PRODUTO'
+      FieldName = 'DISTRIB1_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 61
+    end
+    object ppProdutosppField63: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'DISTRIB2_PRODUTO'
+      FieldName = 'DISTRIB2_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 62
+    end
+    object ppProdutosppField64: TppField
+      FieldAlias = 'VALIDADE_PRODUTO'
+      FieldName = 'VALIDADE_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 63
+    end
+    object ppProdutosppField65: TppField
+      FieldAlias = 'TRIB_DENTRO_PRODUTO'
+      FieldName = 'TRIB_DENTRO_PRODUTO'
+      FieldLength = 3
+      DisplayWidth = 3
+      Position = 64
+    end
+    object ppProdutosppField66: TppField
+      FieldAlias = 'TRIB_FORA_PRODUTO'
+      FieldName = 'TRIB_FORA_PRODUTO'
+      FieldLength = 3
+      DisplayWidth = 3
+      Position = 65
+    end
+    object ppProdutosppField67: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'SIMILAR1_PRODUTO'
+      FieldName = 'SIMILAR1_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 66
+    end
+    object ppProdutosppField68: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'SIMILAR2_PRODUTO'
+      FieldName = 'SIMILAR2_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 67
+    end
+    object ppProdutosppField69: TppField
+      FieldAlias = 'OBSERVACAO_PRODUTO'
+      FieldName = 'OBSERVACAO_PRODUTO'
+      FieldLength = 1
+      DataType = dtMemo
+      DisplayWidth = 10
+      Position = 68
+      Searchable = False
+      Sortable = False
+    end
+    object ppProdutosppField70: TppField
+      FieldAlias = 'SEXO_PRODUTO'
+      FieldName = 'SEXO_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 69
+    end
+    object ppProdutosppField71: TppField
+      FieldAlias = 'FISCAL_PRODUTO'
+      FieldName = 'FISCAL_PRODUTO'
+      FieldLength = 10
+      DisplayWidth = 10
+      Position = 70
+    end
+    object ppProdutosppField72: TppField
+      FieldAlias = 'CONTABIL_PRODUTO'
+      FieldName = 'CONTABIL_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 71
+    end
+    object ppProdutosppField73: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'C_DEFEITO_PRODUTO'
+      FieldName = 'C_DEFEITO_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 72
+    end
+    object ppProdutosppField74: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ENV_GARANTIA_PRODUTO'
+      FieldName = 'ENV_GARANTIA_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 73
+    end
+    object ppProdutosppField75: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'LOCAL_ESTOQUE_PRODUTO'
+      FieldName = 'LOCAL_ESTOQUE_PRODUTO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 74
+    end
+    object ppProdutosppField76: TppField
+      FieldAlias = 'EXPORTADO_PRODUTO'
+      FieldName = 'EXPORTADO_PRODUTO'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 75
+    end
+    object ppProdutosppField77: TppField
+      FieldAlias = 'SELECAO_PRODUTO'
+      FieldName = 'SELECAO_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 76
+    end
+    object ppProdutosppField78: TppField
+      FieldAlias = 'METRO_CUB_PRODUTO'
+      FieldName = 'METRO_CUB_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 77
+    end
+    object ppProdutosppField79: TppField
+      FieldAlias = 'RECEITUAR_PRODUTO'
+      FieldName = 'RECEITUAR_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 78
+    end
+    object ppProdutosppField80: TppField
+      FieldAlias = 'RED_CONTRI_PRODUTO'
+      FieldName = 'RED_CONTRI_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 79
+    end
+    object ppProdutosppField81: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'ALI_CONTRI_PRODUTO'
+      FieldName = 'ALI_CONTRI_PRODUTO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 80
+    end
+    object ppProdutosppField82: TppField
+      FieldAlias = 'TRIB_U_A_PRODUTO'
+      FieldName = 'TRIB_U_A_PRODUTO'
+      FieldLength = 3
+      DisplayWidth = 3
+      Position = 81
+    end
+    object ppProdutosppField83: TppField
+      FieldAlias = 'TRIB_F_A_PRODUTO'
+      FieldName = 'TRIB_F_A_PRODUTO'
+      FieldLength = 3
+      DisplayWidth = 3
+      Position = 82
+    end
+    object ppProdutosppField84: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'RED_U_A_PRODUTO'
+      FieldName = 'RED_U_A_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 83
+    end
+    object ppProdutosppField85: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'RED_F_A_PRODUTO'
+      FieldName = 'RED_F_A_PRODUTO'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 84
+    end
+    object ppProdutosppField86: TppField
+      FieldAlias = 'MERCOSUL_PRODUTO'
+      FieldName = 'MERCOSUL_PRODUTO'
+      FieldLength = 12
+      DisplayWidth = 12
+      Position = 85
+    end
+    object ppProdutosppField87: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COD_EMPRESA'
+      FieldName = 'COD_EMPRESA'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 86
+    end
+    object ppProdutosppField88: TppField
+      FieldAlias = 'FOTO_PRODUTO'
+      FieldName = 'FOTO_PRODUTO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 87
+    end
+    object ppProdutosppField89: TppField
+      FieldAlias = 'QTD_FRACIONADA'
+      FieldName = 'QTD_FRACIONADA'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 88
+    end
+    object ppProdutosppField90: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'CODIGO_GRUPO'
+      FieldName = 'CODIGO_GRUPO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 89
+    end
+    object ppProdutosppField91: TppField
+      FieldAlias = 'DESCRICAO_GRUPO'
+      FieldName = 'DESCRICAO_GRUPO'
+      FieldLength = 30
+      DisplayWidth = 30
+      Position = 90
+    end
+    object ppProdutosppField92: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COMISSAO_GRUPO'
+      FieldName = 'COMISSAO_GRUPO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 91
+    end
+    object ppProdutosppField93: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COMISSAO1_GRUPO'
+      FieldName = 'COMISSAO1_GRUPO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 92
+    end
+    object ppProdutosppField94: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FATOR_VEND_GRUPO'
+      FieldName = 'FATOR_VEND_GRUPO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 93
+    end
+    object ppProdutosppField95: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'CODIGO_SECAO_GRUPO'
+      FieldName = 'CODIGO_SECAO_GRUPO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 94
+    end
+    object ppProdutosppField96: TppField
+      FieldAlias = 'SUSPENSO_GRUPO'
+      FieldName = 'SUSPENSO_GRUPO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 95
+    end
+    object ppProdutosppField97: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'TRANSFERE_GRUPO'
+      FieldName = 'TRANSFERE_GRUPO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
+      Position = 96
+    end
+    object ppProdutosppField98: TppField
+      FieldAlias = 'OBSERVACAO_GRUPO'
+      FieldName = 'OBSERVACAO_GRUPO'
+      FieldLength = 20
+      DisplayWidth = 20
+      Position = 97
+    end
+    object ppProdutosppField99: TppField
+      FieldAlias = 'NEGATIVO_GRUPO'
+      FieldName = 'NEGATIVO_GRUPO'
+      FieldLength = 1
+      DisplayWidth = 1
+      Position = 98
+    end
+    object ppProdutosppField100: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COD_EMPRESA_1'
+      FieldName = 'COD_EMPRESA_1'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 99
+    end
+    object ppProdutosppField101: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'CODIGO_SECAO'
+      FieldName = 'CODIGO_SECAO'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 100
+    end
+    object ppProdutosppField102: TppField
+      FieldAlias = 'DESCRICAO_SECAO'
+      FieldName = 'DESCRICAO_SECAO'
+      FieldLength = 20
+      DisplayWidth = 20
+      Position = 101
+    end
+    object ppProdutosppField103: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'COD_EMPRESA_2'
+      FieldName = 'COD_EMPRESA_2'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
+      Position = 102
+    end
+  end
+end

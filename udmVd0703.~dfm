@@ -1,0 +1,736 @@
+object dmVd0703: TdmVd0703
+  OldCreateOrder = False
+  Left = 354
+  Top = 282
+  Height = 245
+  Width = 395
+  object dspVendasItem: TDataSetProvider
+    DataSet = qryVendasItem
+    Left = 126
+    Top = 64
+  end
+  object cdsVendasItem: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'VENDA'
+        ParamType = ptInput
+        Value = '1'
+      end
+      item
+        DataType = ftString
+        Name = 'EMPRESA'
+        ParamType = ptInput
+        Value = '1'
+      end>
+    ProviderName = 'dspVendasItem'
+    Left = 216
+    Top = 64
+    object cdsVendasItemCODIGO_IVENDA: TIntegerField
+      FieldName = 'CODIGO_IVENDA'
+      Required = True
+    end
+    object cdsVendasItemDESCRICAO_IVENDAS: TStringField
+      FieldName = 'DESCRICAO_IVENDAS'
+      Size = 80
+    end
+    object cdsVendasItemQUANTIDADE_IVENDAS: TFMTBCDField
+      FieldName = 'QUANTIDADE_IVENDAS'
+      Required = True
+      Precision = 15
+      Size = 3
+    end
+    object cdsVendasItemDESCONTO_IVENDAS: TFMTBCDField
+      FieldName = 'DESCONTO_IVENDAS'
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasItemVALORBRUTO_IVENDAS: TFMTBCDField
+      FieldName = 'VALORBRUTO_IVENDAS'
+      Precision = 15
+      Size = 4
+    end
+    object cdsVendasItemTOTAL: TFMTBCDField
+      FieldName = 'TOTAL'
+      Precision = 15
+      Size = 7
+    end
+    object cdsVendasItemCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+      Required = True
+    end
+  end
+  object qryVendasItem: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'VENDA'
+        ParamType = ptInput
+        Value = '1'
+      end
+      item
+        DataType = ftString
+        Name = 'EMPRESA'
+        ParamType = ptInput
+        Value = '1'
+      end>
+    SQL.Strings = (
+      'SELECT'
+      ''
+      'CODIGO_IVENDA,'
+      'DESCRICAO_IVENDAS,'
+      'QUANTIDADE_IVENDAS,'
+      'DESCONTO_IVENDAS,'
+      'VALORBRUTO_IVENDAS,'
+      '(VALORBRUTO_IVENDAS * QUANTIDADE_IVENDAS) AS TOTAL,'
+      'COD_EMPRESA'
+      ''
+      'FROM P_VENDAS_ITENS '
+      'WHERE CODIGO_IVENDA=:VENDA AND COD_EMPRESA=:EMPRESA')
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 40
+    Top = 64
+    object qryVendasItemCODIGO_IVENDA: TIntegerField
+      FieldName = 'CODIGO_IVENDA'
+      Required = True
+    end
+    object qryVendasItemDESCRICAO_IVENDAS: TStringField
+      FieldName = 'DESCRICAO_IVENDAS'
+      Size = 80
+    end
+    object qryVendasItemQUANTIDADE_IVENDAS: TFMTBCDField
+      FieldName = 'QUANTIDADE_IVENDAS'
+      Required = True
+      Precision = 15
+      Size = 3
+    end
+    object qryVendasItemDESCONTO_IVENDAS: TFMTBCDField
+      FieldName = 'DESCONTO_IVENDAS'
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasItemVALORBRUTO_IVENDAS: TFMTBCDField
+      FieldName = 'VALORBRUTO_IVENDAS'
+      Precision = 15
+      Size = 4
+    end
+    object qryVendasItemTOTAL: TFMTBCDField
+      FieldName = 'TOTAL'
+      Precision = 15
+      Size = 7
+    end
+    object qryVendasItemCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+      Required = True
+    end
+  end
+  object qryVendas: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'VENDA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EMPRESA'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'SELECT '
+      ''
+      'V.CODIGO_VENDA,'
+      'V.NOTAFISCAL_VENDA,'
+      'V.COD_EMPRESA,'
+      'V.DATA_VENDA,'
+      'V.EMISSAO_VENDA,'
+      'V.DATASAIDA_VENDA,'
+      'V.HORASAIDA_VENDA,'
+      'V.BASEICMS_VENDA,'
+      'V.ICMSSB_VENDA,'
+      'V.ICMS_VENDA,'
+      'V.IPI_VENDA,'
+      'V.PESOBRUTO_VENDA,'
+      'V.PESOLIQUIDO_VENDA,'
+      'V.EXCLUSAO_VENDA,'
+      'V.DESCONTO_VENDA,'
+      'V.VALORNOTA_VENDA,'
+      'V.CLIENTE_VENDA,'
+      '(V.VALORNOTA_VENDA + V.DESCONTO_VENDA) AS VALOR_BRUTO,'
+      'C.NOME_CLIENTE,'
+      'P.DESCRICAO_CPAGAMENTO,'
+      'VE.NOME_VENDEDOR'
+      ''
+      'FROM P_VENDAS V'
+      
+        'LEFT OUTER JOIN E_CLIENTE    C  ON (V.CLIENTE_VENDA    = C.CODIG' +
+        'O_CLIENTE)'
+      
+        'LEFT OUTER JOIN P_CPAGAMENTO P  ON (V.CPAGAMENTO_VENDA = P.CODIG' +
+        'O_CPAGAMENTO)'
+      
+        'LEFT OUTER JOIN P_VENDEDOR   VE ON (V.VENDEDOR_VENDA   = VE.CODI' +
+        'GO_VENDEDOR)'
+      'WHERE V.CODIGO_VENDA=:VENDA AND V.COD_EMPRESA=:EMPRESA')
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 40
+    Top = 16
+    object qryVendasCODIGO_VENDA: TIntegerField
+      FieldName = 'CODIGO_VENDA'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object qryVendasNOTAFISCAL_VENDA: TIntegerField
+      FieldName = 'NOTAFISCAL_VENDA'
+    end
+    object qryVendasCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+    end
+    object qryVendasDATA_VENDA: TDateField
+      FieldName = 'DATA_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qryVendasEMISSAO_VENDA: TDateField
+      FieldName = 'EMISSAO_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qryVendasDATASAIDA_VENDA: TDateField
+      FieldName = 'DATASAIDA_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qryVendasHORASAIDA_VENDA: TStringField
+      FieldName = 'HORASAIDA_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Size = 8
+    end
+    object qryVendasBASEICMS_VENDA: TFMTBCDField
+      FieldName = 'BASEICMS_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasICMSSB_VENDA: TFMTBCDField
+      FieldName = 'ICMSSB_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasICMS_VENDA: TFMTBCDField
+      FieldName = 'ICMS_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasIPI_VENDA: TFMTBCDField
+      FieldName = 'IPI_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasPESOBRUTO_VENDA: TFMTBCDField
+      FieldName = 'PESOBRUTO_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 3
+    end
+    object qryVendasPESOLIQUIDO_VENDA: TFMTBCDField
+      FieldName = 'PESOLIQUIDO_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 3
+    end
+    object qryVendasEXCLUSAO_VENDA: TDateField
+      FieldName = 'EXCLUSAO_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qryVendasDESCONTO_VENDA: TFMTBCDField
+      FieldName = 'DESCONTO_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasVALORNOTA_VENDA: TFMTBCDField
+      FieldName = 'VALORNOTA_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasVALOR_BRUTO: TFMTBCDField
+      FieldName = 'VALOR_BRUTO'
+      ProviderFlags = []
+      Precision = 15
+      Size = 2
+    end
+    object qryVendasNOME_CLIENTE: TStringField
+      FieldName = 'NOME_CLIENTE'
+      ProviderFlags = []
+      Size = 40
+    end
+    object qryVendasDESCRICAO_CPAGAMENTO: TStringField
+      FieldName = 'DESCRICAO_CPAGAMENTO'
+      ProviderFlags = []
+      Size = 40
+    end
+    object qryVendasNOME_VENDEDOR: TStringField
+      FieldName = 'NOME_VENDEDOR'
+      ProviderFlags = []
+      Size = 30
+    end
+    object qryVendasCLIENTE_VENDA: TIntegerField
+      FieldName = 'CLIENTE_VENDA'
+    end
+  end
+  object dspVendas: TDataSetProvider
+    DataSet = qryVendas
+    Left = 128
+    Top = 16
+  end
+  object cdsVendas: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'VENDA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EMPRESA'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspVendas'
+    Left = 216
+    Top = 16
+    object cdsVendasCODIGO_VENDA: TIntegerField
+      FieldName = 'CODIGO_VENDA'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object cdsVendasNOTAFISCAL_VENDA: TIntegerField
+      FieldName = 'NOTAFISCAL_VENDA'
+    end
+    object cdsVendasCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+    end
+    object cdsVendasDATA_VENDA: TDateField
+      FieldName = 'DATA_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object cdsVendasEMISSAO_VENDA: TDateField
+      FieldName = 'EMISSAO_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object cdsVendasDATASAIDA_VENDA: TDateField
+      FieldName = 'DATASAIDA_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object cdsVendasHORASAIDA_VENDA: TStringField
+      FieldName = 'HORASAIDA_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Size = 8
+    end
+    object cdsVendasBASEICMS_VENDA: TFMTBCDField
+      FieldName = 'BASEICMS_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasICMSSB_VENDA: TFMTBCDField
+      FieldName = 'ICMSSB_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasICMS_VENDA: TFMTBCDField
+      FieldName = 'ICMS_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasIPI_VENDA: TFMTBCDField
+      FieldName = 'IPI_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasPESOBRUTO_VENDA: TFMTBCDField
+      FieldName = 'PESOBRUTO_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 3
+    end
+    object cdsVendasPESOLIQUIDO_VENDA: TFMTBCDField
+      FieldName = 'PESOLIQUIDO_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 3
+    end
+    object cdsVendasEXCLUSAO_VENDA: TDateField
+      FieldName = 'EXCLUSAO_VENDA'
+      ProviderFlags = [pfInUpdate]
+    end
+    object cdsVendasDESCONTO_VENDA: TFMTBCDField
+      FieldName = 'DESCONTO_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasVALORNOTA_VENDA: TFMTBCDField
+      FieldName = 'VALORNOTA_VENDA'
+      ProviderFlags = [pfInUpdate]
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasVALOR_BRUTO: TFMTBCDField
+      FieldName = 'VALOR_BRUTO'
+      ProviderFlags = []
+      Precision = 15
+      Size = 2
+    end
+    object cdsVendasNOME_CLIENTE: TStringField
+      FieldName = 'NOME_CLIENTE'
+      ProviderFlags = []
+      Size = 40
+    end
+    object cdsVendasDESCRICAO_CPAGAMENTO: TStringField
+      FieldName = 'DESCRICAO_CPAGAMENTO'
+      ProviderFlags = []
+      Size = 40
+    end
+    object cdsVendasNOME_VENDEDOR: TStringField
+      FieldName = 'NOME_VENDEDOR'
+      ProviderFlags = []
+      Size = 30
+    end
+    object cdsVendasCLIENTE_VENDA: TIntegerField
+      FieldName = 'CLIENTE_VENDA'
+    end
+  end
+  object cdsReceber: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'COD_CLI'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspReceber'
+    Left = 217
+    Top = 140
+    object cdsReceberDUPLICATA_RECEBER: TStringField
+      FieldName = 'DUPLICATA_RECEBER'
+      Required = True
+      Size = 11
+    end
+    object cdsReceberTIPO_DOCUMENTO_RECEBER: TIntegerField
+      FieldName = 'TIPO_DOCUMENTO_RECEBER'
+    end
+    object cdsReceberCODIGO_CLIENTE_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CLIENTE_RECEBER'
+      Required = True
+    end
+    object cdsReceberEMISSAO_RECEBER: TDateField
+      FieldName = 'EMISSAO_RECEBER'
+    end
+    object cdsReceberVENCIMENTO_RECEBER: TDateField
+      FieldName = 'VENCIMENTO_RECEBER'
+    end
+    object cdsReceberPREVISAO_RECEBER: TDateField
+      FieldName = 'PREVISAO_RECEBER'
+    end
+    object cdsReceberALTERACAO_RECEBER: TDateField
+      FieldName = 'ALTERACAO_RECEBER'
+    end
+    object cdsReceberVALOR_RECEBER: TFMTBCDField
+      FieldName = 'VALOR_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberPARCIAL_RECEBER: TFMTBCDField
+      FieldName = 'PARCIAL_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberVALORPAGO_RECEBER: TFMTBCDField
+      FieldName = 'VALORPAGO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberDESCJUROS_RECEBER: TFMTBCDField
+      FieldName = 'DESCJUROS_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberCOMISSAO_RECEBER: TFMTBCDField
+      FieldName = 'COMISSAO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberCODIGO_PORTADOR_RECEBER: TIntegerField
+      FieldName = 'CODIGO_PORTADOR_RECEBER'
+    end
+    object cdsReceberCODIGO_CENTRO_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CENTRO_RECEBER'
+    end
+    object cdsReceberCODIGO_CORRENTE_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CORRENTE_RECEBER'
+    end
+    object cdsReceberCODIGO_VENDEDOR_RECEBER: TIntegerField
+      FieldName = 'CODIGO_VENDEDOR_RECEBER'
+    end
+    object cdsReceberCODIGO_PARCEIRO_RECEBER: TIntegerField
+      FieldName = 'CODIGO_PARCEIRO_RECEBER'
+    end
+    object cdsReceberCODIGO_BANCO_RECEBER: TIntegerField
+      FieldName = 'CODIGO_BANCO_RECEBER'
+    end
+    object cdsReceberBLOQUETE_RECEBER: TStringField
+      FieldName = 'BLOQUETE_RECEBER'
+      Size = 14
+    end
+    object cdsReceberEMIS_BLOQ_RECEBER: TDateField
+      FieldName = 'EMIS_BLOQ_RECEBER'
+    end
+    object cdsReceberVENC_BLOQ_RECEBER: TDateField
+      FieldName = 'VENC_BLOQ_RECEBER'
+    end
+    object cdsReceberREMESSA_RECEBER: TIntegerField
+      FieldName = 'REMESSA_RECEBER'
+    end
+    object cdsReceberMORA_DIA_RECEBER: TFMTBCDField
+      FieldName = 'MORA_DIA_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberINSTRUCAO_RECEBER: TStringField
+      FieldName = 'INSTRUCAO_RECEBER'
+      Size = 2
+    end
+    object cdsReceberDESCONTO_RECEBER: TFMTBCDField
+      FieldName = 'DESCONTO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberDESC_ATE_RECEBER: TDateField
+      FieldName = 'DESC_ATE_RECEBER'
+    end
+    object cdsReceberCONDICOES_RECEBER: TStringField
+      FieldName = 'CONDICOES_RECEBER'
+      Size = 55
+    end
+    object cdsReceberTIPO_BAIXA_RECEBER: TStringField
+      FieldName = 'TIPO_BAIXA_RECEBER'
+      Size = 1
+    end
+    object cdsReceberTIPO_DUP_RECEBER: TStringField
+      FieldName = 'TIPO_DUP_RECEBER'
+      Size = 1
+    end
+    object cdsReceberMOVIMENTO_RECEBER: TDateField
+      FieldName = 'MOVIMENTO_RECEBER'
+    end
+    object cdsReceberCODIGO_CAIXA_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CAIXA_RECEBER'
+    end
+    object cdsReceberS_RECEBER: TStringField
+      FieldName = 'S_RECEBER'
+      Size = 1
+    end
+    object cdsReceberFORMAPAGTO_RECEBER: TStringField
+      FieldName = 'FORMAPAGTO_RECEBER'
+      Size = 1
+    end
+    object cdsReceberTIT_PRINC_RECEBER: TStringField
+      FieldName = 'TIT_PRINC_RECEBER'
+      Size = 11
+    end
+    object cdsReceberCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+      Required = True
+    end
+    object cdsReceberSALDO_RECEBER: TFMTBCDField
+      FieldName = 'SALDO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object cdsReceberHISTORICO_RECEBER: TMemoField
+      FieldName = 'HISTORICO_RECEBER'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsReceberCODIGO_CONTA_RECEBER: TStringField
+      FieldName = 'CODIGO_CONTA_RECEBER'
+    end
+    object cdsReceberDATA_BASE_RECEBER: TDateField
+      FieldName = 'DATA_BASE_RECEBER'
+    end
+  end
+  object dspReceber: TDataSetProvider
+    DataSet = qryReceber
+    Options = [poAllowCommandText]
+    Left = 127
+    Top = 140
+  end
+  object qryReceber: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'COD_CLI'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'SELECT * FROM P_RECEBER WHERE CODIGO_CLIENTE_RECEBER=:COD_CLI')
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 40
+    Top = 139
+    object qryReceberDUPLICATA_RECEBER: TStringField
+      FieldName = 'DUPLICATA_RECEBER'
+      Required = True
+      Size = 11
+    end
+    object qryReceberTIPO_DOCUMENTO_RECEBER: TIntegerField
+      FieldName = 'TIPO_DOCUMENTO_RECEBER'
+    end
+    object qryReceberCODIGO_CLIENTE_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CLIENTE_RECEBER'
+      Required = True
+    end
+    object qryReceberEMISSAO_RECEBER: TDateField
+      FieldName = 'EMISSAO_RECEBER'
+    end
+    object qryReceberVENCIMENTO_RECEBER: TDateField
+      FieldName = 'VENCIMENTO_RECEBER'
+    end
+    object qryReceberPREVISAO_RECEBER: TDateField
+      FieldName = 'PREVISAO_RECEBER'
+    end
+    object qryReceberALTERACAO_RECEBER: TDateField
+      FieldName = 'ALTERACAO_RECEBER'
+    end
+    object qryReceberVALOR_RECEBER: TFMTBCDField
+      FieldName = 'VALOR_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberPARCIAL_RECEBER: TFMTBCDField
+      FieldName = 'PARCIAL_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberVALORPAGO_RECEBER: TFMTBCDField
+      FieldName = 'VALORPAGO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberDESCJUROS_RECEBER: TFMTBCDField
+      FieldName = 'DESCJUROS_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberCOMISSAO_RECEBER: TFMTBCDField
+      FieldName = 'COMISSAO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberCODIGO_PORTADOR_RECEBER: TIntegerField
+      FieldName = 'CODIGO_PORTADOR_RECEBER'
+    end
+    object qryReceberCODIGO_CENTRO_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CENTRO_RECEBER'
+    end
+    object qryReceberCODIGO_CORRENTE_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CORRENTE_RECEBER'
+    end
+    object qryReceberCODIGO_VENDEDOR_RECEBER: TIntegerField
+      FieldName = 'CODIGO_VENDEDOR_RECEBER'
+    end
+    object qryReceberCODIGO_PARCEIRO_RECEBER: TIntegerField
+      FieldName = 'CODIGO_PARCEIRO_RECEBER'
+    end
+    object qryReceberCODIGO_BANCO_RECEBER: TIntegerField
+      FieldName = 'CODIGO_BANCO_RECEBER'
+    end
+    object qryReceberBLOQUETE_RECEBER: TStringField
+      FieldName = 'BLOQUETE_RECEBER'
+      Size = 14
+    end
+    object qryReceberEMIS_BLOQ_RECEBER: TDateField
+      FieldName = 'EMIS_BLOQ_RECEBER'
+    end
+    object qryReceberVENC_BLOQ_RECEBER: TDateField
+      FieldName = 'VENC_BLOQ_RECEBER'
+    end
+    object qryReceberREMESSA_RECEBER: TIntegerField
+      FieldName = 'REMESSA_RECEBER'
+    end
+    object qryReceberMORA_DIA_RECEBER: TFMTBCDField
+      FieldName = 'MORA_DIA_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberINSTRUCAO_RECEBER: TStringField
+      FieldName = 'INSTRUCAO_RECEBER'
+      Size = 2
+    end
+    object qryReceberDESCONTO_RECEBER: TFMTBCDField
+      FieldName = 'DESCONTO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberDESC_ATE_RECEBER: TDateField
+      FieldName = 'DESC_ATE_RECEBER'
+    end
+    object qryReceberCONDICOES_RECEBER: TStringField
+      FieldName = 'CONDICOES_RECEBER'
+      Size = 55
+    end
+    object qryReceberTIPO_BAIXA_RECEBER: TStringField
+      FieldName = 'TIPO_BAIXA_RECEBER'
+      Size = 1
+    end
+    object qryReceberTIPO_DUP_RECEBER: TStringField
+      FieldName = 'TIPO_DUP_RECEBER'
+      Size = 1
+    end
+    object qryReceberMOVIMENTO_RECEBER: TDateField
+      FieldName = 'MOVIMENTO_RECEBER'
+    end
+    object qryReceberCODIGO_CAIXA_RECEBER: TIntegerField
+      FieldName = 'CODIGO_CAIXA_RECEBER'
+    end
+    object qryReceberS_RECEBER: TStringField
+      FieldName = 'S_RECEBER'
+      Size = 1
+    end
+    object qryReceberFORMAPAGTO_RECEBER: TStringField
+      FieldName = 'FORMAPAGTO_RECEBER'
+      Size = 1
+    end
+    object qryReceberTIT_PRINC_RECEBER: TStringField
+      FieldName = 'TIT_PRINC_RECEBER'
+      Size = 11
+    end
+    object qryReceberCOD_EMPRESA: TIntegerField
+      FieldName = 'COD_EMPRESA'
+      Required = True
+    end
+    object qryReceberSALDO_RECEBER: TFMTBCDField
+      FieldName = 'SALDO_RECEBER'
+      Precision = 15
+      Size = 2
+    end
+    object qryReceberHISTORICO_RECEBER: TMemoField
+      FieldName = 'HISTORICO_RECEBER'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object qryReceberCODIGO_CONTA_RECEBER: TStringField
+      FieldName = 'CODIGO_CONTA_RECEBER'
+    end
+    object qryReceberDATA_BASE_RECEBER: TDateField
+      FieldName = 'DATA_BASE_RECEBER'
+    end
+  end
+end

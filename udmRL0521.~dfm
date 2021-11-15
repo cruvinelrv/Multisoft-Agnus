@@ -1,0 +1,81 @@
+object dmRL0521: TdmRL0521
+  OldCreateOrder = False
+  Left = 192
+  Top = 114
+  Height = 293
+  Width = 568
+  object qryAcesso: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'USU1'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'DATA1'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'DATA2'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'SELECT'
+      'DATA_ACESSO,'
+      'HORA_ACESSO,'
+      'USUARIO_ACESSO,'
+      'ROTINA_ACESSO,'
+      'HISTORICO_ACESSO'
+      'FROM P_ACESSOS'
+      
+        'WHERE (USUARIO_ACESSO LIKE :USU1) AND (DATA_ACESSO>=:DATA1 AND D' +
+        'ATA_ACESSO<=:DATA2)')
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 48
+    Top = 16
+  end
+  object cdsAcesso: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspAcesso'
+    Left = 184
+    Top = 16
+    object cdsAcessoDATA_ACESSO: TDateField
+      FieldName = 'DATA_ACESSO'
+    end
+    object cdsAcessoHORA_ACESSO: TTimeField
+      FieldName = 'HORA_ACESSO'
+    end
+    object cdsAcessoUSUARIO_ACESSO: TStringField
+      FieldName = 'USUARIO_ACESSO'
+      Size = 10
+    end
+    object cdsAcessoROTINA_ACESSO: TStringField
+      FieldName = 'ROTINA_ACESSO'
+      Size = 30
+    end
+    object cdsAcessoHISTORICO_ACESSO: TStringField
+      FieldName = 'HISTORICO_ACESSO'
+      Size = 80
+    end
+  end
+  object dspAcesso: TDataSetProvider
+    DataSet = qryAcesso
+    Left = 112
+    Top = 16
+  end
+  object dsAcesso: TDataSource
+    AutoEdit = False
+    DataSet = cdsAcesso
+    Left = 240
+    Top = 16
+  end
+  object pplAcesso: TppDBPipeline
+    UserName = 'lAcesso'
+    Left = 296
+    Top = 16
+  end
+end

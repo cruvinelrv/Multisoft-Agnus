@@ -1,0 +1,25 @@
+unit udmRL0902;
+
+interface
+
+uses
+  SysUtils, Classes;
+
+type
+  TdmRL0902 = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmRL0902: TdmRL0902;
+
+implementation
+
+uses uDmPrincipal;
+
+{$R *.dfm}
+
+end.

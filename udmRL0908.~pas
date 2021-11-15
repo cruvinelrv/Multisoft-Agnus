@@ -1,0 +1,43 @@
+unit udmRL0908;
+
+interface
+
+uses
+  SysUtils, Classes, FMTBcd, ppComm, ppRelatv, ppDB, ppDBPipe, DB,
+  DBClient, Provider, SqlExpr;
+
+type
+  TdmRL0908 = class(TDataModule)
+    qryConsulta: TSQLQuery;
+    dspConsulta: TDataSetProvider;
+    cdsConsulta: TClientDataSet;
+    cdsConsultaEMITENTE: TStringField;
+    cdsConsultaBANCO: TIntegerField;
+    cdsConsultaCHEQUE: TStringField;
+    cdsConsultaVALOR: TFMTBCDField;
+    cdsConsultaVENCIMENTO: TDateField;
+    cdsConsultaEMISSAO: TDateField;
+    cdsConsultaOBSERVACAO: TStringField;
+    cdsConsultaDEVOLUCAO1: TDateField;
+    cdsConsultaDEVOLUCAO2: TDateField;
+    cdsConsultaDT_BAIXA: TDateField;
+    cdsConsultaDT_LANCTO: TDateField;
+    cdsConsultaLIQUIDACAO: TDateField;
+    dtsConsulta: TDataSource;
+    ppDBConsulta: TppDBPipeline;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmRL0908: TdmRL0908;
+
+implementation
+
+uses uDmPrincipal;
+
+{$R *.dfm}
+
+end.

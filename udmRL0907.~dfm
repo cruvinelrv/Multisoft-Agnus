@@ -1,0 +1,106 @@
+object dmRL0907: TdmRL0907
+  OldCreateOrder = False
+  Left = 315
+  Top = 303
+  Height = 150
+  Width = 537
+  object qryConsulta: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 39
+    Top = 9
+  end
+  object dspConsulta: TDataSetProvider
+    DataSet = qryConsulta
+    Options = [poAllowCommandText]
+    Left = 139
+    Top = 8
+  end
+  object cdsConsulta: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsulta'
+    Left = 248
+    Top = 8
+    object cdsConsultaCODIGO_CONLAN: TIntegerField
+      FieldName = 'CODIGO_CONLAN'
+      Required = True
+    end
+    object cdsConsultaCORRENTE_CONLAN: TIntegerField
+      FieldName = 'CORRENTE_CONLAN'
+    end
+    object cdsConsultaCONTA_CONLAN: TStringField
+      FieldName = 'CONTA_CONLAN'
+    end
+    object cdsConsultaDESCRICAO_CONTA: TStringField
+      FieldName = 'DESCRICAO_CONTA'
+      Size = 40
+    end
+    object cdsConsultaTIPO_CONTA: TStringField
+      FieldName = 'TIPO_CONTA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsConsultaTITULO_CONTA: TStringField
+      FieldName = 'TITULO_CONTA'
+      Size = 40
+    end
+    object cdsConsultaHISTORICO_CONLAN: TStringField
+      FieldName = 'HISTORICO_CONLAN'
+      Size = 150
+    end
+    object cdsConsultaVALOR_CONLAN: TFMTBCDField
+      FieldName = 'VALOR_CONLAN'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaMOVIMENTO_CONLAN: TDateField
+      FieldName = 'MOVIMENTO_CONLAN'
+    end
+    object cdsConsultaCENTRO_CONLAN: TIntegerField
+      FieldName = 'CENTRO_CONLAN'
+    end
+    object cdsConsultaDOCUMENTO_CONLAN: TStringField
+      FieldName = 'DOCUMENTO_CONLAN'
+      Size = 11
+    end
+    object cdsConsultaORIGEM_CONLAN: TStringField
+      FieldName = 'ORIGEM_CONLAN'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsConsultaTIPO_CONLAN: TStringField
+      FieldName = 'TIPO_CONLAN'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsConsultaDATA_CONLAN: TDateField
+      FieldName = 'DATA_CONLAN'
+    end
+    object cdsConsultaCredito: TFMTBCDField
+      FieldName = 'Credito'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaDebito: TFMTBCDField
+      FieldName = 'Debito'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaDESCRICAO_CENTRO: TStringField
+      FieldName = 'DESCRICAO_CENTRO'
+    end
+  end
+  object dtsConsulta: TDataSource
+    DataSet = cdsConsulta
+    Left = 344
+    Top = 8
+  end
+  object ppDBConsulta: TppDBPipeline
+    DataSource = dtsConsulta
+    UserName = 'DBConsulta'
+    Left = 464
+    Top = 9
+  end
+end

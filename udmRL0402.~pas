@@ -1,0 +1,52 @@
+unit udmRL0402;
+
+interface
+
+uses
+  SysUtils, Classes, DBClient, Provider, DB, SqlExpr, FMTBcd;
+
+type
+  TdmRL0402 = class(TDataModule)
+    qryVendedor: TSQLQuery;
+    dspVendedor: TDataSetProvider;
+    cdsVendedor: TClientDataSet;
+    qrySecao: TSQLQuery;
+    dspSecao: TDataSetProvider;
+    cdsSecao: TClientDataSet;
+    qryVendedor2: TSQLQuery;
+    dspVendedor2: TDataSetProvider;
+    cdsVendedor2: TClientDataSet;
+    qryVendas: TSQLQuery;
+    dspVendas: TDataSetProvider;
+    cdsVendas: TClientDataSet;
+    qryRelatorio: TSQLQuery;
+    dspRelatorio: TDataSetProvider;
+    cdsRelatorio: TClientDataSet;
+    cdsRelatorioCOD_VENDA: TIntegerField;
+    cdsRelatorioDATA: TDateField;
+    cdsRelatorioHORA: TStringField;
+    cdsRelatorioVAL_TABELA: TFloatField;
+    cdsRelatorioDESCONTO: TFloatField;
+    cdsRelatorioVAL_RECEBIDO: TFloatField;
+    cdsRelatorioTIPO_PGTO: TStringField;
+    cdsRelatorioDATA_CAIXA: TStringField;
+    cdsRelatorioTURNO: TStringField;
+    cdsRelatorioFUNCIONARIO: TStringField;
+    cdsRelatorioNUM_DOC: TStringField;
+    cdsRelatorioCFOP: TStringField;
+    cdsRelatorioCLIENTE: TStringField;
+    cdsRelatorioVENDEDOR: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmRL0402: TdmRL0402;
+
+implementation
+
+{$R *.dfm}
+
+end.

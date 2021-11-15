@@ -1,0 +1,92 @@
+object frmShiftF12: TfrmShiftF12
+  Left = 199
+  Top = 181
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Troca Mercadoria'
+  ClientHeight = 387
+  ClientWidth = 544
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 1
+    Width = 449
+    Height = 385
+    TabOrder = 0
+    object DBGrid1: TDBGrid
+      Left = 7
+      Top = 6
+      Width = 433
+      Height = 369
+      Color = clCream
+      DataSource = dsTroca
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Style = [fsBold]
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'COD_VENDA'
+          Title.Caption = 'Venda'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DATA'
+          Title.Caption = 'Data'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'HORA'
+          Title.Caption = 'Hora'
+          Width = 53
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'USUARIO'
+          Title.Caption = 'Usu'#225'rio'
+          Width = 216
+          Visible = True
+        end>
+    end
+  end
+  object BitBtn4: TBitBtn
+    Left = 453
+    Top = 1
+    Width = 89
+    Height = 30
+    Cancel = True
+    Caption = '&Fechar'
+    TabOrder = 1
+    OnClick = BitBtn4Click
+  end
+  object dsTroca: TDataSource
+    DataSet = dmShiftF12.cdsTroca
+    Left = 320
+    Top = 168
+  end
+end

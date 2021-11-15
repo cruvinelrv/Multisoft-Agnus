@@ -1,0 +1,291 @@
+unit uRL100102;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, JvExStdCtrls, JvEdit, JvValidateEdit,
+  Buttons, ppBarCod, ppCtrls, ppPrnabl, ppClass, ppStrtch, ppRegion,
+  ppCache, ppBands, ppComm, ppRelatv, ppProd, ppReport, FMTBcd, DB, SqlExpr,
+  DBClient, ppParameter, ppDB, ppDBPipe, ComCtrls, Grids, DBGrids, Menus;
+
+type
+  TfrmRL100102 = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Label3: TLabel;
+    SpeedButton1: TSpeedButton;
+    edtCodProduto: TJvValidateEdit;
+    edtDescProduto: TEdit;
+    rdgModelo_Etiqueta: TRadioGroup;
+    rptModelo_01: TppReport;
+    ppDetailBand1: TppDetailBand;
+    ppLabel3: TppLabel;
+    ppLabel1: TppLabel;
+    ppLabel2: TppLabel;
+    ppLabel4: TppLabel;
+    ppLabel5: TppLabel;
+    ppLabel6: TppLabel;
+    ppParameterList1: TppParameterList;
+    DataSource1: TDataSource;
+    ppDBPipeline1: TppDBPipeline;
+    ppTitleBand1: TppTitleBand;
+    ppSummaryBand1: TppSummaryBand;
+    ppRegion1: TppRegion;
+    ppLabel7: TppLabel;
+    ppLabel8: TppLabel;
+    Label1: TLabel;
+    DBGrid1: TDBGrid;
+    cdsItens: TClientDataSet;
+    cdsItensDESCRICAO: TStringField;
+    cdsItensQTD: TIntegerField;
+    cdsItensCODPRO: TIntegerField;
+    cdsItensVALOR: TFloatField;
+    cdsItensCODFAB: TStringField;
+    PopupMenu1: TPopupMenu;
+    Excluir1: TMenuItem;
+    dsImp: TDataSource;
+    cdsImp: TClientDataSet;
+    cdsImpDESCRICAO: TStringField;
+    cdsImpCODPRO: TIntegerField;
+    cdsImpVALOR: TFloatField;
+    cdsImpDESCRICAO2: TStringField;
+    cdsImpCODPRO2: TIntegerField;
+    cdsImpVALOR2: TFloatField;
+    Edit1: TEdit;
+    UpDown1: TUpDown;
+    Label2: TLabel;
+    Button2: TBitBtn;
+    Button3: TBitBtn;
+    Button1: TBitBtn;
+    cdsImpCODFAB: TStringField;
+    cdsImpCODFAB2: TStringField;
+    procedure Button2Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure edtCodProdutoExit(Sender: TObject);
+    procedure ppLabel2GetText(Sender: TObject; var Text: String);
+    procedure ppLabel3GetText(Sender: TObject; var Text: String);
+    procedure ppLabel1GetText(Sender: TObject; var Text: String);
+    procedure ppLabel5GetText(Sender: TObject; var Text: String);
+    procedure ppLabel4GetText(Sender: TObject; var Text: String);
+    procedure ppLabel6GetText(Sender: TObject; var Text: String);
+    procedure Button1Click(Sender: TObject);
+    procedure ppLabel7GetText(Sender: TObject; var Text: String);
+    procedure ppLabel8GetText(Sender: TObject; var Text: String);
+    procedure Button3Click(Sender: TObject);
+    procedure Excluir1Click(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure edtCodProdutoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+    Cod1, Nome1, Valor1, Fabrica1: String;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRL100102: TfrmRL100102;
+
+implementation
+
+uses uDmPrincipal, uGlobal, uConsulta;
+
+{$R *.dfm}
+
+procedure TfrmRL100102.Button2Click(Sender: TObject);
+begin
+   Close;
+end;
+
+procedure TfrmRL100102.SpeedButton1Click(Sender: TObject);
+begin
+   edtCodProduto.SetFocus;
+
+   ConsultaProduto(edtCodProduto);
+end;
+
+procedure TfrmRL100102.edtCodProdutoExit(Sender: TObject);
+var
+   ComponenteSql: TSQLQuery;
+begin
+   if edtCodProduto.Value > 0 then
+   begin
+      ComponenteSql := TSQLQuery.Create(Application);
+      ComponenteSql.SQLConnection := DmPrincipal.DbConexao; // conexao com o banco
+      ComponenteSql.SQL.Add('SELECT FABRICANTE_PRODUTO, CODIGO_PRODUTO, PRECO_LISTA_PRODUTO, DESCRICAO_PRODUTO, BARRA_PRODUTO FROM P_PRODUTOS WHERE CODIGO_PRODUTO = ' + QuotedStr(edtCodProduto.Text));
+      ComponenteSql.Open;
+
+      if ComponenteSql.IsEmpty then
+      begin
+         Application.MessageBox('O código informado é inválido', 'Informação', MB_OK+MB_ICONEXCLAMATION);
+         edtDescProduto.Clear;
+         Exit;
+      end
+      else
+      begin
+         edtDescProduto.Text := ComponenteSql.FieldByName('DESCRICAO_PRODUTO').AsString;
+
+         Valor1   := ComponenteSql.FieldByName('PRECO_LISTA_PRODUTO').AsString;
+         Fabrica1 := ComponenteSql.FieldByName('FABRICANTE_PRODUTO').AsString;
+         Nome1    := ComponenteSql.FieldByName('DESCRICAO_PRODUTO').AsString;
+         Cod1     := ComponenteSql.FieldByName('CODIGO_PRODUTO').AsString;
+
+         Edit1.Text := '1';
+      end;
+
+      FreeAndNil(ComponenteSql);
+   end
+   else
+      edtDescProduto.Text := '';
+end;
+
+procedure TfrmRL100102.ppLabel2GetText(Sender: TObject; var Text: String);
+begin
+   Text := Copy(cdsImpDESCRICAO.AsString,1,12);
+end;
+
+procedure TfrmRL100102.ppLabel3GetText(Sender: TObject; var Text: String);
+begin
+   Text := 'R$' + FormatFloat('0.00',cdsImpVALOR.AsFloat);
+end;
+
+procedure TfrmRL100102.ppLabel1GetText(Sender: TObject; var Text: String);
+begin
+   Text  := FormatFloat('000000',cdsImpCODPRO.AsInteger);
+end;
+
+procedure TfrmRL100102.ppLabel5GetText(Sender: TObject; var Text: String);
+begin
+   if cdsImpCODPRO2.AsString <> '' then
+      Text := FormatFloat('000000',cdsImpCODPRO2.AsInteger);
+end;
+
+procedure TfrmRL100102.ppLabel4GetText(Sender: TObject; var Text: String);
+begin
+   if cdsImpVALOR2.AsString <> '' then
+      Text := 'R$' + FormatFloat('0.00',cdsImpVALOR2.AsFloat);
+end;
+
+procedure TfrmRL100102.ppLabel6GetText(Sender: TObject; var Text: String);
+begin
+   Text := Copy(cdsImpDESCRICAO2.AsString,1,12);
+end;
+
+procedure TfrmRL100102.Button1Click(Sender: TObject);
+var
+   Cod, Col: Integer;
+begin
+   if rdgModelo_Etiqueta.ItemIndex < 0 then
+   begin
+      Application.MessageBox('Selecione o modelo da etiqueta.','Atenção', MB_OK + MB_ICONEXCLAMATION);
+      Exit;
+   end;
+
+   if cdsItens.RecordCount = 0 then
+   begin
+      Application.MessageBox('A lista para impressão está vazia.','Atenção', MB_OK + MB_ICONEXCLAMATION);
+      Exit;
+   end;
+
+   //Monta extrutura para impressão
+   Col := 1;
+   cdsItens.First;
+   while not cdsItens.Eof do
+   begin
+      Cod := cdsItensQTD.AsInteger;
+      repeat
+         if Col = 1 then
+         begin
+            cdsImp.Append;
+            
+            cdsImpDESCRICAO .AsString  := cdsItensDESCRICAO.AsString;
+            cdsImpCODPRO    .AsString  := cdsItensCODPRO.AsString;
+            cdsImpVALOR     .AsString  := cdsItensVALOR.AsString;
+            cdsImpCODFAB    .AsString  := cdsItensCODFAB.AsString;
+
+            Col := 2;
+         end
+         else
+         begin
+            cdsImpDESCRICAO2 .AsString  := cdsItensDESCRICAO.AsString;
+            cdsImpCODPRO2    .AsString  := cdsItensCODPRO.AsString;
+            cdsImpVALOR2     .AsString  := cdsItensVALOR.AsString;
+            cdsImpCODFAB2    .AsString  := cdsItensCODFAB.AsString;
+
+            Col := 1;
+            cdsImp.Post;
+         end;
+
+         Cod := Cod - 1;
+      until Cod = 0;
+
+      cdsItens.Next;
+   end;
+
+   if cdsImp.State in [dsInsert] then
+      cdsImp.Post;
+
+   //ppReport1.Print;
+   rptModelo_01.Print;
+end;
+
+procedure TfrmRL100102.ppLabel7GetText(Sender: TObject; var Text: String);
+begin
+   Text := Copy(cdsImpCODFAB.AsString,1,12);
+end;
+
+procedure TfrmRL100102.ppLabel8GetText(Sender: TObject; var Text: String);
+begin
+  Text := Copy(cdsImpCODFAB2.AsString,1,12);
+end;
+
+procedure TfrmRL100102.Button3Click(Sender: TObject);
+begin
+   if edtDescProduto.Text = '' then
+   begin
+      edtCodProduto.SetFocus;
+      Exit;
+   end;
+
+   cdsItens.Append;
+
+   cdsItensDESCRICAO .AsString := Nome1;
+   cdsItensQTD       .AsString := Edit1.Text;
+   cdsItensCODPRO    .AsString := Cod1;
+   cdsItensVALOR     .AsString := Valor1;
+   cdsItensCODFAB    .AsString := Fabrica1;
+
+   cdsItens.Post;
+
+   edtDescProduto.Clear;
+   edtCodProduto.Text := '0';
+   edtCodProduto.SetFocus;
+end;
+
+procedure TfrmRL100102.Excluir1Click(Sender: TObject);
+begin
+   cdsItens.Delete;
+end;
+
+procedure TfrmRL100102.DataSource1DataChange(Sender: TObject;
+  Field: TField);
+begin
+   Label1.Caption := 'Total de registros: ' + IntToStr(cdsItens.RecordCount);
+end;
+
+procedure TfrmRL100102.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+      Perform(WM_NEXTDLGCTL, 0, 0);
+end;
+
+procedure TfrmRL100102.edtCodProdutoKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   if key = 123 then
+      SpeedButton1.Click;
+end;
+
+end.

@@ -1,0 +1,99 @@
+object dmRL0901: TdmRL0901
+  OldCreateOrder = False
+  Left = 317
+  Top = 227
+  Height = 102
+  Width = 539
+  object qryConsulta: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmPrincipal.DbConexao
+    Left = 29
+    Top = 8
+  end
+  object dspConsulta: TDataSetProvider
+    DataSet = qryConsulta
+    Options = [poAllowCommandText]
+    Left = 136
+    Top = 8
+  end
+  object cdsConsulta: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspConsulta'
+    Left = 248
+    Top = 8
+    object cdsConsultaCODIGO_CONLAN: TIntegerField
+      FieldName = 'CODIGO_CONLAN'
+      Required = True
+    end
+    object cdsConsultaCORRENTE_CONLAN: TIntegerField
+      FieldName = 'CORRENTE_CONLAN'
+    end
+    object cdsConsultaDESCRICAO_BANCO: TStringField
+      FieldName = 'DESCRICAO_BANCO'
+    end
+    object cdsConsultaDATA_CONLAN: TDateField
+      FieldName = 'DATA_CONLAN'
+    end
+    object cdsConsultaVALOR_CONLAN: TFMTBCDField
+      FieldName = 'VALOR_CONLAN'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaTIPO_CONLAN: TStringField
+      FieldName = 'TIPO_CONLAN'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsConsultaHISTORICO_CONLAN: TStringField
+      FieldName = 'HISTORICO_CONLAN'
+      Size = 150
+    end
+    object cdsConsultaHISTORIC2_CONLAN: TStringField
+      FieldName = 'HISTORIC2_CONLAN'
+      Size = 150
+    end
+    object cdsConsultaMOVIMENTO_CONLAN: TDateField
+      FieldName = 'MOVIMENTO_CONLAN'
+    end
+    object cdsConsultaBANCO_RESBAN: TIntegerField
+      FieldName = 'BANCO_RESBAN'
+    end
+    object cdsConsultaANTERIOR_RESBAN: TFMTBCDField
+      FieldName = 'ANTERIOR_RESBAN'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaDEBITO_RESBAN: TFMTBCDField
+      FieldName = 'DEBITO_RESBAN'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaCREDITO_RESBAN: TFMTBCDField
+      FieldName = 'CREDITO_RESBAN'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaSaldo_Atual: TFMTBCDField
+      FieldName = 'Saldo_Atual'
+      Precision = 15
+      Size = 2
+    end
+    object cdsConsultaDOCUMENTO_CONLAN: TStringField
+      FieldName = 'DOCUMENTO_CONLAN'
+      Size = 11
+    end
+  end
+  object dtsConsulta: TDataSource
+    DataSet = cdsConsulta
+    Left = 344
+    Top = 8
+  end
+  object ppDBConsulta: TppDBPipeline
+    DataSource = dtsConsulta
+    UserName = 'DBConsulta'
+    Left = 456
+    Top = 8
+  end
+end

@@ -1,0 +1,7 @@
+object dmRL0903: TdmRL0903
+  OldCreateOrder = False
+  Left = 308
+  Top = 272
+  Height = 150
+  Width = 517
+end
